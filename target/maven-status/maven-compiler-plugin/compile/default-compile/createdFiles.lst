@@ -1,0 +1,5 @@
+com/pe/rappi/service/questions/CreateQuestions.class
+com/pe/rappi/service/utils/WebServiceEndpoints.class
+com/pe/rappi/service/tasks/Create.class
+com/pe/rappi/service/utils/Utils.class
+com/pe/rappi/service/model/Users.class
