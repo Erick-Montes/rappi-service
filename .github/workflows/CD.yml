@@ -1,0 +1,14 @@
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  deploy:
+    name: "Automation Test"
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{ github.ref }}
+      - run: echo ${{ github.ref }}

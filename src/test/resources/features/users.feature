@@ -1,5 +1,6 @@
 Feature: Servicio para crear un usuario
 
+  @auto-createuser
   Scenario Outline: Validar los datos del usuario creado
     Given que el cliente accede al servicio
     When el ingresa su nombre <nombre> y posicion <posicion>
