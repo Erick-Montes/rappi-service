@@ -15,7 +15,9 @@ jobs:
       - name: Set up JDK 1.9
         uses: actions/setup-java@v2
         with:
-          java-version: 1.9
+          distribution: 'temurin'
+          java-version: 11
+          cache: 'maven'
       - name: Cache the Maven packages to speed up build
         uses: actions/cache@v2
         with:
