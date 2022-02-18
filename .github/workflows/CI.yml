@@ -17,7 +17,6 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: 11
-          cache: 'maven'
       - name: Cache the Maven packages to speed up build
         uses: actions/cache@v2
         with:
