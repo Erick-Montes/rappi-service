@@ -23,12 +23,15 @@ jobs:
           path: ~/.m2
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
-
+      - name: Imprimir
+        run: |
+          echo ${{github.event_name}}
+          echo ${{github.event.pull_request.base.ref}}
       - if: ${{ github.event_name == 'pull_request' && github.event.pull_request.base.ref == 'master' }}
         name: Unit and Integration Tests by default fixture
-        #        run: mvn clean verify -Dcucumber.filter.tags="@auto-createuser"
+        #        run: mvn clean verify -Dcucumber.filter.tags="@auto- createuser"
         run: mvn clean verify -Dcucumber.filter.tags=auto-createuser
-      - if: ${{ github.event_name == 'workflow_dispatch' && github.event.pull_request.base.ref == 'master' }}
+      - if: ${{ github.event_name == 'workflow_dispatch' && github.base.ref == 'master' }}
         name: Unit and Integration Tests by workflow_dispatch
         run: mvn clean verify -Dcucumber.filter.tags=${{ github.event.inputs.executeTags }}
 
