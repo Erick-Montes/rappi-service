@@ -39,9 +39,10 @@ jobs:
             ${{ runner.os }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-build-
             ${{ runner.os }}-
-      - name: Install Dependencies
-          if: steps.cache-mavenmodules.outputs.cache-hit != 'true'
-          run: mvn install
+
+      - if: steps.cache-mavenmodules.outputs.cache-hit != 'true'
+        name: Install Dependencies
+        run: mvn install
       - name: Imprimir
         run: |
           echo ${{github.event_name}}
