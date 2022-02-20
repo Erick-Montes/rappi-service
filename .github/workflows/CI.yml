@@ -40,7 +40,7 @@ jobs:
             ${{ runner.os }}-build-
             ${{ runner.os }}-
 
-      - if: steps.cache-mavenmodules.outputs.cache-hit == 'true'
+      - if: steps.cache-mavenmodules.outputs.cache-hit != 'true'
         name: Install Dependencies
         run: mvn install
       - name: Imprimir
