@@ -24,7 +24,7 @@ jobs:
         uses: actions/setup-java@v2
         with:
           distribution: 'adopt'
-          java-version: 16
+          java-version: 11
       #    cache: 'maven'
       - name: Cache the Maven packages
         uses: actions/cache@v2
