@@ -55,6 +55,6 @@ jobs:
             ./target/site/serenity/
 
       - name: Cache the Maven Repository Save
-          uses: actions/cache@v2
-          with:
-            step: save
+        uses: actions/cache@v2
+        with:
+          step: save
