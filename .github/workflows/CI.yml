@@ -20,11 +20,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - name: Set up JDK 1.9
-        uses: actions/setup-java@v2
+      - name: Set up JDK 8
+        uses: actions/setup-java@v2.3.1
         with:
-          distribution: 'temurin'
-          java-version: 11
+          distribution: 'adopt'
+          java-version: 8
           cache: 'maven'
     #  - name: Cache the Maven Repository
      #   uses: actions/cache@v2
