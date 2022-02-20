@@ -38,6 +38,9 @@ jobs:
             ${{ runner.os }}-build-${{ env.cache-name }}-
             ${{ runner.os }}-build-
             ${{ runner.os }}-
+      - name: Install Dependencies
+          if: steps.cache-nodemodules.outputs.cache-hit != 'true'
+          run: mvn install
       - name: Imprimir
         run: |
           echo ${{github.event_name}}
