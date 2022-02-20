@@ -27,6 +27,7 @@ jobs:
           java-version: 11
       #    cache: 'maven'
       - name: Cache maven modules
+        id: cache-mavenmodules
         uses: actions/cache@v2
         env:
           cache-name: cache-maven-modules
@@ -39,7 +40,7 @@ jobs:
             ${{ runner.os }}-build-
             ${{ runner.os }}-
       - name: Install Dependencies
-          if: steps.cache-maven-modules.outputs.cache-hit != 'true'
+          if: steps.cache-mavenmodules.outputs.cache-hit != 'true'
           run: mvn install
       - name: Imprimir
         run: |
