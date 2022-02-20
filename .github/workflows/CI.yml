@@ -30,7 +30,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ~/.m2/repository
-          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          key: ${{ runner.os }}-maven-v1-${{ hashFiles('**/pom.xml') }}
           #restore-keys: |
            # ${{ runner.os }}-maven-
 
@@ -44,11 +44,11 @@ jobs:
       - if: ${{ github.event_name == 'push' }}
         #&& github.event.pull_request.base.ref == 'master'
         name: Unit and Integration Tests by default fixture
-        run: mvn verify -Dcucumber.filter.tags=@auto-createuser --file pom.xml
+        run: mvn clean verify -Dcucumber.filter.tags=@auto-createuser --file pom.xml
 
       - if: ${{ github.event_name == 'workflow_dispatch' }}
         name: Unit and Integration Tests by workflow_dispatch
-        run: mvn verify -Dcucumber.filter.tags=${{ github.event.inputs.executeTags }} --file pom.xml
+        run: mvn clean verify -Dcucumber.filter.tags=${{ github.event.inputs.executeTags }} --file pom.xml
 
       - name: Upload Results
         uses: actions/upload-artifact@v2
