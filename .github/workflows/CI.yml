@@ -32,10 +32,12 @@ jobs:
           cache-name: cache-maven-modules
         with:
        #   path: ${{ github.workspace }}/repository
-          path: ~/.m2/repository
+          path: ~/.m2
           key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/pom.xml') }}
-          #restore-keys: |
-           # ${{ runner.os }}-maven-
+          restore-keys: |
+            ${{ runner.os }}-build-${{ env.cache-name }}-
+            ${{ runner.os }}-build-
+            ${{ runner.os }}-
       - name: Imprimir
         run: |
           echo ${{github.event_name}}
