@@ -6,14 +6,15 @@ on:
     pull_request:
       branches:
         - "master"
-  env:
-    MAVEN_OPTS: "-Dmaven.repo.local=${{ github.workspace }}/repository"
+
   workflow_dispatch:
     inputs:
       executeTags:
         description: 'Create User'
         required: true
         default: '@auto-createuser'
+env:
+  MAVEN_OPTS: "-Dmaven.repo.local=${{ github.workspace }}/repository"
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -24,6 +25,7 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: 11
+          cache: 'maven'
       - name: Cache the Maven Repository
         uses: actions/cache@v2
         with:
