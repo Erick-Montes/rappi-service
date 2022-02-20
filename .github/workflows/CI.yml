@@ -26,14 +26,14 @@ jobs:
           distribution: 'temurin'
           java-version: 11
           cache: 'maven'
-      - name: Cache the Maven Repository
-        uses: actions/cache@v2
-        with:
-          path: ${{ github.workspace }}/repository
+    #  - name: Cache the Maven Repository
+     #   uses: actions/cache@v2
+      #  with:
+       #   path: ${{ github.workspace }}/repository
         #  path: ~/.m2/repository
-          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-          restore-keys: |
-            ${{ runner.os }}-maven-
+        #  key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+         # restore-keys: |
+          #  ${{ runner.os }}-maven-
       - name: Imprimir
         run: |
           echo ${{github.event_name}}
