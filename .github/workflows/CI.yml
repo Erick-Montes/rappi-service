@@ -24,11 +24,15 @@ jobs:
           java-version: 11
       - name: Cache the Maven packages to speed up build
         uses: actions/cache@v2
+        env:
+          cache-name: cache-node-modules
         with:
           path: ~/.m2/repository
-          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          key: ${{ runner.os }}-maven-${{ env.cache-name }}-${{ hashFiles('**/pom.xml') }}
           restore-keys: |
+            ${{ runner.os }}-maven-${{ env.cache-name }}-
             ${{ runner.os }}-maven-
+            ${{ runner.os }}-
       - name: Imprimir
         run: |
           echo ${{github.event_name}}
