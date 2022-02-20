@@ -41,4 +41,18 @@ public class CreateUsersStepsDefinitions {
         theActorInTheSpotlight().should(seeThat("validate name", new CreateQuestions().name(), equalTo(name))
                 , seeThat("validate job", new CreateQuestions().job(), equalTo(job)));
     }
+
+    @Given("que el se encuentra en el modal del login")
+    public void queElSeEncuentraEnElModalDelLogin() {
+        
+    }
+
+    @When("el ingresa su celular {int} y su dni {int}")
+    public void elIngresaSuCelularYSuDni(int arg0, int arg1) {
+        
+    }
+
+    @Then("el logra ingresar a la plataforma")
+    public void elLograIngresarALaPlataforma() {
+    }
 }
