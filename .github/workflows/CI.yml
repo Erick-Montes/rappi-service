@@ -1,5 +1,5 @@
 name: Automation Test
-on:
+on: [ push, pull_request, workflow_dispatch ]
   push:
     branches:
       - "master"
@@ -22,7 +22,8 @@ jobs:
       MAVEN_OPTS: -Xmx1024M
     steps:
       - uses: actions/checkout@v2
-
+      - name: Build Maven project
+        run: mvn -B package --file pom.xml
       - name: Cache the Maven packages
         uses: actions/cache@v2
         with:
@@ -39,19 +40,16 @@ jobs:
         with:
          # distribution: 'adopt'
           java-version: 11
-          #    cache: 'maven'
-      - name: Imprimir
-        run: |
-          echo ${{github.event_name}}
+
 
       - if: ${{ github.event_name == 'push' }}
         #&& github.event.pull_request.base.ref == 'master'
         name: Unit and Integration Tests by default fixture
-        run: mvn clean install -Dcucumber.filter.tags=@auto-createuser
+        run: mvn clean verify -Dcucumber.filter.tags=@auto-createuser
 
       - if: ${{ github.event_name == 'workflow_dispatch' }}
         name: Unit and Integration Tests by workflow_dispatch
-        run: mvn clean install -Dcucumber.filter.tags=${{ github.event.inputs.executeTags }}
+        run: mvn clean verify -Dcucumber.filter.tags=${{ github.event.inputs.executeTags }}
 
       - name: Upload Results
         uses: actions/upload-artifact@v2
