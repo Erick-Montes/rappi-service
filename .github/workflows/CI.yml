@@ -24,16 +24,17 @@ jobs:
         uses: actions/setup-java@v2.3.1
         with:
           distribution: 'adopt'
-          java-version: 8
+          java-version: 11
           cache: 'maven'
-    #  - name: Cache the Maven Repository
-     #   uses: actions/cache@v2
-      #  with:
+      - name: Cache the Maven Repository Restore
+        uses: actions/cache@v2
+        with:
+          step: restore
        #   path: ${{ github.workspace }}/repository
         #  path: ~/.m2/repository
-        #  key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
-         # restore-keys: |
-          #  ${{ runner.os }}-maven-
+         # key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          #restore-keys: |
+           # ${{ runner.os }}-maven-
       - name: Imprimir
         run: |
           echo ${{github.event_name}}
@@ -52,3 +53,8 @@ jobs:
           name: TestResults
           path: |
             ./target/site/serenity/
+
+      - name: Cache the Maven Repository Save
+          uses: actions/cache@v2
+          with:
+            step: save
