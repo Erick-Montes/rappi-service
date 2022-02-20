@@ -27,8 +27,8 @@ jobs:
         with:
           distribution: 'adopt'
           java-version: 11
-      - name: Build Maven project
-        run: mvn -B package --file pom.xml
+    #  - name: Build Maven project
+     #   run: mvn -B package --file pom.xml
       - name: Cache the Maven packages
         id: myCacheMaven
         uses: actions/cache@v2
