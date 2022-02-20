@@ -25,14 +25,15 @@ jobs:
         with:
           distribution: 'adopt'
           java-version: 11
-          cache: 'maven'
-      - name: Cache the Maven Repository Restore
+      #    cache: 'maven'
+      - name: Cache maven modules
         uses: actions/cache@v2
+        env:
+          cache-name: cache-maven-modules
         with:
-          step: restore
        #   path: ${{ github.workspace }}/repository
-        #  path: ~/.m2/repository
-         # key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/pom.xml') }}
           #restore-keys: |
            # ${{ runner.os }}-maven-
       - name: Imprimir
@@ -54,7 +55,4 @@ jobs:
           path: |
             ./target/site/serenity/
 
-      - name: Cache the Maven Repository Save
-        uses: actions/cache@v2
-        with:
-          step: save
+
