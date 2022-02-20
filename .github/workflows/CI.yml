@@ -26,7 +26,7 @@ jobs:
           distribution: 'adopt'
           java-version: 11
       #    cache: 'maven'
-      - name: Cache the Maven packages to speed up build
+      - name: Cache the Maven packages
         uses: actions/cache@v1
         with:
           path: ~/.m2
