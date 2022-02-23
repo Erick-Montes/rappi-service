@@ -45,7 +45,7 @@ pipeline {
           if("${TEST_CASE_VARIABLE}".trim().toUpperCase() == 'all'.toUpperCase()) {
             bat "mvn clean verify"
           } else {
-            bat "mvn clean verify -Dcucumber.filter.tags=\" '${TEST_CASE_VARIABLE}' \""
+            bat "mvn clean verify -Dcucumber.filter.tags=\"${TEST_CASE_VARIABLE}\""
           }
         }
       }
