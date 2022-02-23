@@ -1,5 +1,5 @@
-@Api-user
-Feature: Servicio para crear un usuario
+# Language: es
+Característica: Servicio para crear un usuario
 
   @auto-createuser
   Scenario Outline: Validar los datos del usuario creado
