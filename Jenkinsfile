@@ -10,7 +10,7 @@ pipeline {
         branch 'master'
       } */
       steps {
-        sh 'mvn clean package'
+        bat 'mvn clean package'
       }
     }
 
@@ -43,9 +43,9 @@ pipeline {
         echo "Hello, ${TEST_CASE_VARIABLE}, nice to meet you again."
         script {
           if("${TEST_CASE_VARIABLE}".trim().toUpperCase() == 'all'.toUpperCase()) {
-            sh "mvn clean verify"
+            bat "mvn clean verify"
           } else {
-            sh "mvn clean verify -Dcucumber.filter.tags=\"${TEST_CASE_VARIABLE}\""
+            bat "mvn clean verify -Dcucumber.filter.tags=\"${TEST_CASE_VARIABLE}\""
           }
         }
       }
