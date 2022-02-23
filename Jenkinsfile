@@ -10,7 +10,7 @@ pipeline {
         branch 'master'
       } */
       steps {
-        bat 'mvn clean package'
+        sh 'mvn clean package'
       }
     }
 
@@ -43,19 +43,17 @@ pipeline {
         echo "Hello, ${TEST_CASE_VARIABLE}, nice to meet you again."
         script {
           if("${TEST_CASE_VARIABLE}".trim().toUpperCase() == 'all'.toUpperCase()) {
-            bat "mvn clean verify"
+            sh "mvn clean verify"
           } else {
-            bat "mvn clean verify -Dcucumber.filter.tags=\"${TEST_CASE_VARIABLE}\""
+            sh "mvn clean verify -Dcucumber.filter.tags=\"${TEST_CASE_VARIABLE}\""
           }
         }
-      post{
-          always{
-              serenity: "target/site/serenity/"
-          }
-       }
       }
     }
-
-    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'coverage', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: ''])
+    post{
+       always{
+           archiveArtifacts artifacts:: "./target/site/serenity/", fingerprint: true
+        }
+     }
   }
 }
