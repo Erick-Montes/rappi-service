@@ -6,18 +6,18 @@ pipeline {
   agent any
   stages {
     stage("Package") {
-      when {
+/*       when {
         branch 'master'
-      }
+      } */
       steps {
         bat 'mvn clean package'
       }
     }
 
     stage(TCs) {
-      when {
+    /*   when {
         branch 'master'
-      }
+      } */
       options {
         timeout(time: 60, unit: 'SECONDS')
       }
@@ -36,9 +36,9 @@ pipeline {
       }
     }
     stage(Test) {
-      when {
+   /*    when {
         branch 'master'
-      }
+      } */
       steps {
         echo "Hello, ${TEST_CASE_VARIABLE}, nice to meet you again."
         script {
