@@ -48,7 +48,14 @@ pipeline {
             bat "mvn clean verify -Dcucumber.filter.tags=\"${TEST_CASE_VARIABLE}\""
           }
         }
+      post{
+          always{
+              serenity: "target/site/serenity/"
+          }
+       }
       }
     }
+
+    publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: 'coverage', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: ''])
   }
 }
