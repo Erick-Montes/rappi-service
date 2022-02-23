@@ -50,10 +50,10 @@ pipeline {
         }
       }
     }
-    post{
-       always{
-           archiveArtifacts artifacts: "./target/site/serenity/", fingerprint: true
-        }
-     }
   }
+  post{
+     always{
+         archiveArtifacts artifacts: "./target/site/serenity/", fingerprint: true
+          }
+       }
 }
