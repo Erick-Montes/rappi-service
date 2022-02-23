@@ -52,7 +52,7 @@ pipeline {
     }
     post{
        always{
-           archiveArtifacts artifacts:: "./target/site/serenity/", fingerprint: true
+           archiveArtifacts artifacts: "./target/site/serenity/", fingerprint: true
         }
      }
   }
